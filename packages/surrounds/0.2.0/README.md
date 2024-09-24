@@ -4,9 +4,9 @@
 ### Important note on trigger syntax:
 This package uses a leading semicolon `;` instead of Espanso's more standard `:`(colon). I find that this is slightly faster to type, but if you would like to change it, feel free to do so.
 
-## :Usage examples:
+## Usage examples:
 
-Say you have a long string of text that you want to search in google using quotes.
+Say you have a long string of text that you want to search in google using quotes:
 1. copy the text
 2. click on the google search bar so your cursor is blinking there. 
 3. use the trigger combination `;p"` and the text string will be placed with quotation marks around it.

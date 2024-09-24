@@ -1,0 +1,26 @@
+global_vars:
+  - name: paste_word
+    type: clipboard  
+
+matches:
+  ## Surrounds
+  # surround word in double quotes
+  - triggers: [;pq, ;p"]
+    replace: '"{{paste_word}}"'
+
+  # surround in single quotes
+  - triggers: [;psq, ;sq, ;p']
+    replace: "'{{paste_word}}'"
+
+  - trigger: ;p` # handy for code markdown formatting
+    replace: "`{{paste_word}}`"
+  
+  # surround in parentheses, brackets, braces
+  - trigger: ;p(
+    replace: ({{paste_word}})
+
+  - trigger: ;p[
+    replace: [{{paste_word}}]
+
+  - trigger: ;p{
+    replace: {{{paste_word}}}

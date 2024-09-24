@@ -1,0 +1,7 @@
+name: "surrounds"
+title: "Surrounds for text strings"
+description: Copy text and then use these expansions to surround the text with various punctuation.
+version: 0.2.0
+author: Ben Alexander (mistahben), contributions by Stephen Meech (smeech)
+tags: ["text", "writing", "clipboard", "punctuation"]
+homepage: https://github.com/mistahBen/espanso_hub/tree/main
