@@ -15,5 +15,3 @@ You will need to edit the entries in the `form_urls.csv`. The sample lines are a
 ## reuse
 
 You can of course also copy the contents of this package and create multiple form lists with other text. 👍 If you do so, you will need to edit the global variable for the location of the csv file.
-
-**Requires `awk`.**
