@@ -1,31 +1,47 @@
-# yaml-language-server: https://github.com/espanso/espanso/blob/dev/schemas/match.schema.json
-# uses form_urls.csv to paste the link to the corresponding URL.
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
 
 global_vars:
   - name: "urlcsv"
-    type: echo
+    type: shell
     params:
-      echo: "$CONFIG/match/packages/form-list/0.2.0/form_urls.csv"
+      cmd: echo "$CONFIG/match/packages/form-list/0.2.0/form_urls.csv"
 
 matches:
-  - trigger: ":forms"
-    replace: "{{form_url}}"
+  - trigger: :forms
+    replace: '{{form_url}}'
     vars:
       - name: form_names
-        type: shell
+        type: script
         params:
-          cmd: awk -F, '{print $1}' {{urlcsv}}
-      - name: form1
+          args:
+            - python
+            - -c
+            - |
+              import csv
+              with open('{{urlcsv}}', newline='') as f:
+                for row in csv.reader(f): print(row[0])
+      - name: choice
         type: form
         params:
           layout: |
-            get link to D65 form:
+            Get link to D65 form:
             [[choices]]
           fields:
             choices:
               type: list
-              values: "{{form_names}}"
+              values: '{{form_names}}'
       - name: form_url
-        type: shell
+        type: script
         params:
-          cmd: awk -F, '$1 == "{{form1.choices}}" {print $2}' {{urlcsv}}
+          args:
+            - python
+            - -c
+            - |
+              import csv
+              with open('{{urlcsv}}', newline='') as f:
+                for row in csv.reader(f):
+                  if row[0] == '{{choice.choices}}':
+                    print(row[1])
+                    break
+
+
